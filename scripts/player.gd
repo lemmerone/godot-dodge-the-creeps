@@ -5,9 +5,9 @@ signal hit
 var screen_size
 
 func _ready():
-	hide()
 	screen_size = get_viewport_rect().size
-	
+	hide()
+
 func _process(delta):
 	var velocity = Vector2.ZERO
 	
@@ -32,7 +32,6 @@ func _process(delta):
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 	elif velocity.y != 0:
 		$AnimatedSprite2D.animation = "up"
-		$AnimatedSprite2D.animation = "up"
 		$AnimatedSprite2D.flip_v = velocity.y > 0
 		
 	position += velocity * delta
@@ -42,7 +41,7 @@ func _process(delta):
 func _on_body_entered(body):
 	hide()
 	hit.emit()
-	$CollisionShape2D.set_deferred("disabled", true)
+	$CollisionShape2D.set_deferred(&"disabled", true)
 
 func start(pos):
 	position = pos
